@@ -1,0 +1,74 @@
+
+
+<div [formGroup]="addressForm">
+      <div class="row">
+          <div class="form-group col-md-2">
+            <label >title</label>
+            <select class="form-control" formControlName="title" >
+              <option  *ngFor="let ttl of title" [value]="ttl">{{ttl}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-5">
+              <label >Full name</label>
+              <input type="text" formControlName="fullName"  class="form-control">
+              <!--display error message if FullName is not valid-->
+                <small [hidden]="addressForm.controls.fullName.valid" class="text-danger">
+                    FullName  is required
+                </small>
+            </div>
+          <div class="form-group col-md-5">
+              <label >Contact number</label>
+              <input type="text" formControlName="contactNumber" class="form-control">
+                <!--display error message if street is not valid-->
+                <small [hidden]="addressForm.controls.contactNumber.valid" class="text-danger">
+                  Contact Number is required 
+                </small>
+            </div>
+    </div> 
+    <div class="row">
+        
+        <div class="form-group col-md-6">
+            <label > email</label>
+            <input type="email"  class="form-control" formControlName="email">
+          </div>
+        <div class="form-group col-md-6">
+            <label >liscence</label>
+            <input type="number" formControlName="liscence"  class="form-control">
+          </div>
+  </div> 
+  <div class="row">
+     
+      <div class="form-group col-md-4">
+          <label >Nationality</label>
+          <input type="text"  class="form-control" formControlName="nationality">
+        </div>
+      <div class="form-group col-md-4">
+          <label > weight</label>
+          <input type="number"  class="form-control" formControlName="weight">
+        </div>
+        <div class="form-group col-md-4">
+            <label >age group</label>
+            <select class="form-control" formControlName="ageGroup" >
+                
+                <option *ngFor="let age of ageGroup"
+                [value]="age">{{age}}
+              </option>
+              <!-- <option  *ngFor="let age of ageGroup" [value]="age">{{age}}</option> -->
+            </select>
+          </div>
+
+</div>
+<div class="form-group">
+  <div class="col-md-6">
+      <div class="checkbox">
+          <label><input type="checkbox" formControlName="multiMedia" >Multi Media</label>
+        </div>
+  </div>
+  <div class="col-md-6">
+      <div class="checkbox">
+          <label><input type="checkbox" formControlName="transport" >Transport</label>
+        </div>
+  </div>
+</div>
+   
+</div>

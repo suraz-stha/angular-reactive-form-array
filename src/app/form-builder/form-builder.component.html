@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form novalidate [formGroup]="userForm" (ngSubmit)="save(userForm)" >
+        <h4>user data</h4>
+        
+          <div formArrayName="pax">
+            <div *ngFor="let pas of userForm.controls.pax.controls; let i=index"  class="panel panel-default">
+              <!-- address header, show remove button when more than one address available -->
+              <div class="panel-heading">
+                <span>pax {{i+1}} personal Detail</span>
+                <span *ngIf="userForm.controls.pax.controls.length > 1" (click)="removePax(i)" class="fa fa-window-close pull-right">  </span>
+              </div>
+               <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+               <div class="panel-body" [formGroupName]="i">
+                 
+                  <app-address  [group]="userForm.controls.pax.controls[i]"></app-address>
+               </div>
+              </div>
+
+          </div>
+         
+            <span class="btn btn-default " (click)="addPax()">add Pax</span>
+            <div  style="margin-top:20px">
+              <div class="panel panel-default">
+                <div class="panel-heading">other details</div>  
+                <div class="panel-body">
+                  <div class="form-group">
+    
+                     
+                    <p>  <label>payement option</label> </p>
+                    <label class="radio-inline">
+                        <input type="radio" name="payMode" value="cash" formControlName="payMode">Cash
+                      </label>
+                     <label class="radio-inline">
+                        <input type="radio" name="payMode" value="ESewa" formControlName="payMode">ESewa
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="payMode" value="iPay" formControlName="payMode">iPay
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="payMode" value="paypal" formControlName="payMode">Pay Pal
+                      </label>
+                  </div>
+                  <div class="form-group">
+                    <label>Pick up Location</label>
+                    <div class="row">
+                      <div class="col-md-6"><input type="text" placeholder="pick Up" formControlName="pickup" class="form-control"></div>
+                      <div class="col-md-6"><input type="text" placeholder="drop" formControlName="drop" class="form-control"></div>
+                    </div>
+                  </div> 
+                  <div class="form-group">
+                    <label>Special Request</label>
+                    <textarea class="form-control" formControlName="specialRequest" rows="5" id="comment"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <div class="checkbox">
+                          <label><input type="checkbox" formControlName="termsCondition" value="">I accept <b>terms and condition</b></label>
+                        </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+            <button type="submit" [disabled]="!userForm.valid" class="btn btn-success">Submit</button>
+            <input type="reset" class="btn btn-danger">
+       </form>
+    </div>
+<div class="col-md-4" style="
+position:  fixed;
+left: 50%;
+">
+      <div class=" panel-default">
+      <h4 class="text-center panel-heading">Details</h4>
+      <div class= "panel-body" style="padding:30px; "> 
+      <div class="row"><span >{{userForm.controls.pax.controls.length }} * Pax </span> <strong class="pull-right">{{userForm.controls.pax.controls.length * adultRate | currency:'USD':'symbol'}}</strong></div>
+      <div class="row"><span >{{userForm.controls.pax.controls.length }} * Multimedia </span> <span class="pull-right">free</span></div>
+      <div class="row"><span >{{userForm.controls.pax.controls.length }} * Transport </span> <span class="pull-right">free</span></div>
+    </div>
+    <div class="panel-footer">
+        <h3 class="text-center ">Total {{userForm.controls.pax.controls.length * adultRate | currency:'USD':'symbol'}}</h3>
+      </div>
+  </div>
+    
+  <pre>{{userForm.value | json}}</pre></div>
+    
+  </div>
+</div>

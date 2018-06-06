@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 ">
+      <input type="search" name="" id="" class="form-control" placeholder="search here"  [formControl]="searchField">
+      <hr>
+      <ul>
+          <li *ngFor="let search of searches">{{ search }}</li>
+        </ul>
+    </div>
+  </div>
+</div>
